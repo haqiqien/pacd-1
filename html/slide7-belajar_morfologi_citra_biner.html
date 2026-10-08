@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Belajar Morphological Image Processing (Citra Biner)</title>
-<style>
+<script>try{const t=localStorage.getItem("pcd-theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t;else document.documentElement.removeAttribute("data-theme")}catch(_){}</script><style>
 :root{--bg:#fbfaf7;--tx:#1d2733;--ac:#1f5f8b;--bx:#e8eef3;--wr:#fff4e0;--bd:#c9d3dc}
 @media(prefers-color-scheme:dark){:root{--bg:#161b22;--tx:#e6edf3;--ac:#7cb7e6;--bx:#222b36;--wr:#3a2f1c;--bd:#3b4654}}
 body{margin:0;background:var(--bg);color:var(--tx);font:17px/1.7 Georgia,serif}
@@ -74,8 +74,19 @@ nav#site-navigation b{color:var(--muted)}
 nav#site-navigation a{color:var(--text)}
 nav#site-navigation a:hover,nav#site-navigation a:focus-visible{background:var(--surface-soft)}
 nav#site-navigation>a:first-child{background:var(--accent);color:#fff}
-@media(max-width:700px){main,.w{width:calc(100% - 24px);margin:12px auto 24px;padding:68px 18px 36px;border-radius:20px}body>h1:first-of-type{padding-top:72px}body>h1,body>p,body>section,body>figure,body>.box,body>.crit,body>.ok,body>.row,body>details,body>table,body>.m,body>.flow,body>.f,body>.sc{width:calc(100% - 24px)}}</style></head><body><div class="w">
-<button class="nav-toggle" type="button" aria-controls="site-navigation" aria-expanded="false"><span aria-hidden="true">&#9776;</span> Menu</button><nav id="site-navigation" hidden><a href="index.html">⌂ Beranda</a><b>Daftar isi</b><a href="#p">0. Peta besar</a><a href="#s">1. Teori himpunan</a><a href="#e">2. SE, erosi, dilasi</a><a href="#o">3. Opening &amp; closing</a><a href="#h">4. Hit-or-miss</a><a href="#a">5. Aplikasi dasar</a><a href="#l">6. Convex hull, thinning</a><a href="#k">7. Skeleton &amp; pruning</a><a href="#r">8. Ringkasan</a><a href="#q">9. Latihan</a></nav>
+@media(max-width:700px){main,.w{width:calc(100% - 24px);margin:12px auto 24px;padding:68px 18px 36px;border-radius:20px}body>h1:first-of-type{padding-top:72px}body>h1,body>p,body>section,body>figure,body>.box,body>.crit,body>.ok,body>.row,body>details,body>table,body>.m,body>.flow,body>.f,body>.sc{width:calc(100% - 24px)}}
+/* Pemilih tema bersama: default sistem, serta mode terang/gelap paksa. */
+:root{--page:#f5f7fb;--surface:#fff;--surface-soft:#edf3fb;--text:#19283b;--muted:#627187;--line:#dce5ef;--accent:#176b65;--accent-strong:#10534f;--accent-soft:#e1f2ef;--shadow:0 14px 36px rgba(27,48,70,.08);--bg:var(--page);--surface-color:var(--surface);--fg:var(--text);--tx:var(--text);--ink:var(--text);--mut:var(--muted);--mu:var(--muted);--bd:var(--line);--ln:var(--line);--ac:var(--accent);--hl:var(--accent);--card:var(--surface);--bx:var(--surface);--cd:var(--surface-soft);--acbg:var(--accent-soft);--tip:var(--surface-soft);--ok:var(--accent-soft);--warn:#f9f1dd;--wabg:#f9f1dd;--crit:#fbe7e5;--rebg:#fbe7e5;--color:var(--text);color-scheme:light}
+:root[data-theme="dark"]{--page:#101923;--surface:#182431;--surface-soft:#202f3e;--text:#edf4f7;--muted:#a6b6c6;--line:#304252;--accent:#72d1bf;--accent-strong:#9ce3d5;--accent-soft:#203d3d;--shadow:0 14px 36px rgba(0,0,0,.2);--warn:#3a321a;--wabg:#3a321a;--crit:#35201f;--rebg:#35201f;--color:var(--text);color-scheme:dark}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]):not([data-theme="dark"]){--page:#101923;--surface:#182431;--surface-soft:#202f3e;--text:#edf4f7;--muted:#a6b6c6;--line:#304252;--accent:#72d1bf;--accent-strong:#9ce3d5;--accent-soft:#203d3d;--shadow:0 14px 36px rgba(0,0,0,.2);--warn:#3a321a;--wabg:#3a321a;--crit:#35201f;--rebg:#35201f;--color:var(--text);color-scheme:dark}}
+.theme-control{display:inline-flex;align-items:center;gap:2px;padding:3px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--text);font:600 12px/1.2 system-ui,sans-serif}
+.theme-control button{min-height:32px;padding:6px 9px;border:0;border-radius:7px;background:transparent;color:var(--muted);font:inherit;cursor:pointer}
+.theme-control button[aria-pressed="true"]{background:var(--accent-soft);color:var(--accent-strong)}
+.theme-control button:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.theme-control-label{padding:0 5px;color:var(--muted);font-size:11px;font-weight:700}
+body .theme-floating{position:fixed;top:12px;right:12px;z-index:1002}
+@media(max-width:560px){body .theme-floating{top:8px;right:8px}.theme-control-label{display:none}.theme-control button{padding:6px 7px}}</style></head><body><div class="w">
+<div class="theme-control theme-floating" role="group" aria-label="Pilih tema"><span class="theme-control-label">Tema</span><button type="button" data-theme-choice="system" aria-pressed="false">Sistem</button><button type="button" data-theme-choice="light" aria-pressed="false">Terang</button><button type="button" data-theme-choice="dark" aria-pressed="false">Gelap</button></div><button class="nav-toggle" type="button" aria-controls="site-navigation" aria-expanded="false"><span aria-hidden="true">&#9776;</span> Menu</button><nav id="site-navigation" hidden><a href="index.html">⌂ Beranda</a><b>Daftar isi</b><a href="#p">0. Peta besar</a><a href="#s">1. Teori himpunan</a><a href="#e">2. SE, erosi, dilasi</a><a href="#o">3. Opening &amp; closing</a><a href="#h">4. Hit-or-miss</a><a href="#a">5. Aplikasi dasar</a><a href="#l">6. Convex hull, thinning</a><a href="#k">7. Skeleton &amp; pruning</a><a href="#r">8. Ringkasan</a><a href="#q">9. Latihan</a></nav>
 <main>
 <h1>Morphological Image Processing: Citra Biner</h1>
 <p>Panduan belajar dari slide V7 (buku Gonzalez &amp; Woods, <i>Digital Image Processing</i>, Bab 9). Gambar di bawah dibuat dengan Python (NumPy, SciPy, Matplotlib) pada citra contoh yang sama, jadi Anda bisa membandingkan efek tiap operasi secara langsung. Piksel hitam = foreground (nilai 1), putih = background (0).</p>
@@ -219,5 +230,22 @@ nav#site-navigation>a:first-child{background:var(--accent);color:#fff}
   document.addEventListener('click', event => {
     if (!menu.hidden && !menu.contains(event.target) && !button.contains(event.target)) closeMenu();
   });
+})();
+</script><script>
+(() => {
+  const root = document.documentElement;
+  const controls = [...document.querySelectorAll('[data-theme-choice]')];
+  const valid = ['system', 'light', 'dark'];
+  const applyTheme = choice => {
+    const mode = valid.includes(choice) ? choice : 'system';
+    if (mode === 'system') root.removeAttribute('data-theme');
+    else root.dataset.theme = mode;
+    controls.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.themeChoice === mode)));
+    try { localStorage.setItem('pcd-theme', mode); } catch (_) {}
+  };
+  let saved = 'system';
+  try { saved = localStorage.getItem('pcd-theme') || 'system'; } catch (_) {}
+  applyTheme(saved);
+  controls.forEach(button => button.addEventListener('click', () => applyTheme(button.dataset.themeChoice)));
 })();
 </script></body></html>

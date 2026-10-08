@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Belajar Segmentasi Deep Learning</title>
-<style>
+<script>try{const t=localStorage.getItem("pcd-theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t;else document.documentElement.removeAttribute("data-theme")}catch(_){}</script><style>
 :root{--bg:#f7f9fb;--fg:#1a2430;--mu:#5a6877;--ac:#0b6e8a;--bx:#fff;--bd:#d5dde5;--wr:#fff4e0;--wb:#e0a030;--ok:#e6f4ec}
 @media(prefers-color-scheme:dark){:root{--bg:#0f1620;--fg:#e6ecf2;--mu:#9fb0c0;--ac:#5cc4e0;--bx:#18222e;--bd:#2c3a4a;--wr:#2e2614;--wb:#c8922a;--ok:#14271c}}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.7 Georgia,'Times New Roman',serif}
@@ -77,10 +77,21 @@ nav#site-navigation b{color:var(--muted)}
 nav#site-navigation a{color:var(--text)}
 nav#site-navigation a:hover,nav#site-navigation a:focus-visible{background:var(--surface-soft)}
 nav#site-navigation>a:first-child{background:var(--accent);color:#fff}
-@media(max-width:700px){main,.w{width:calc(100% - 24px);margin:12px auto 24px;padding:68px 18px 36px;border-radius:20px}body>h1:first-of-type{padding-top:72px}body>h1,body>p,body>section,body>figure,body>.box,body>.crit,body>.ok,body>.row,body>details,body>table,body>.m,body>.flow,body>.f,body>.sc{width:calc(100% - 24px)}}</style></head><body><div class="w">
+@media(max-width:700px){main,.w{width:calc(100% - 24px);margin:12px auto 24px;padding:68px 18px 36px;border-radius:20px}body>h1:first-of-type{padding-top:72px}body>h1,body>p,body>section,body>figure,body>.box,body>.crit,body>.ok,body>.row,body>details,body>table,body>.m,body>.flow,body>.f,body>.sc{width:calc(100% - 24px)}}
+/* Pemilih tema bersama: default sistem, serta mode terang/gelap paksa. */
+:root{--page:#f5f7fb;--surface:#fff;--surface-soft:#edf3fb;--text:#19283b;--muted:#627187;--line:#dce5ef;--accent:#176b65;--accent-strong:#10534f;--accent-soft:#e1f2ef;--shadow:0 14px 36px rgba(27,48,70,.08);--bg:var(--page);--surface-color:var(--surface);--fg:var(--text);--tx:var(--text);--ink:var(--text);--mut:var(--muted);--mu:var(--muted);--bd:var(--line);--ln:var(--line);--ac:var(--accent);--hl:var(--accent);--card:var(--surface);--bx:var(--surface);--cd:var(--surface-soft);--acbg:var(--accent-soft);--tip:var(--surface-soft);--ok:var(--accent-soft);--warn:#f9f1dd;--wabg:#f9f1dd;--crit:#fbe7e5;--rebg:#fbe7e5;--color:var(--text);color-scheme:light}
+:root[data-theme="dark"]{--page:#101923;--surface:#182431;--surface-soft:#202f3e;--text:#edf4f7;--muted:#a6b6c6;--line:#304252;--accent:#72d1bf;--accent-strong:#9ce3d5;--accent-soft:#203d3d;--shadow:0 14px 36px rgba(0,0,0,.2);--warn:#3a321a;--wabg:#3a321a;--crit:#35201f;--rebg:#35201f;--color:var(--text);color-scheme:dark}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]):not([data-theme="dark"]){--page:#101923;--surface:#182431;--surface-soft:#202f3e;--text:#edf4f7;--muted:#a6b6c6;--line:#304252;--accent:#72d1bf;--accent-strong:#9ce3d5;--accent-soft:#203d3d;--shadow:0 14px 36px rgba(0,0,0,.2);--warn:#3a321a;--wabg:#3a321a;--crit:#35201f;--rebg:#35201f;--color:var(--text);color-scheme:dark}}
+.theme-control{display:inline-flex;align-items:center;gap:2px;padding:3px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--text);font:600 12px/1.2 system-ui,sans-serif}
+.theme-control button{min-height:32px;padding:6px 9px;border:0;border-radius:7px;background:transparent;color:var(--muted);font:inherit;cursor:pointer}
+.theme-control button[aria-pressed="true"]{background:var(--accent-soft);color:var(--accent-strong)}
+.theme-control button:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.theme-control-label{padding:0 5px;color:var(--muted);font-size:11px;font-weight:700}
+body .theme-floating{position:fixed;top:12px;right:12px;z-index:1002}
+@media(max-width:560px){body .theme-floating{top:8px;right:8px}.theme-control-label{display:none}.theme-control button{padding:6px 7px}}</style></head><body><div class="w">
 <h1>Belajar Segmentasi Citra dengan Deep Learning</h1>
 <p>Panduan belajar berdasarkan slide "Segmentasi Pendekatan Deep Learning" (Agus Harjoko). Setiap bagian berisi penjelasan sederhana, contoh hitungan, dan <b>catatan kritis</b> (hal yang perlu kamu waspadai, atau yang di slide dijelaskan terlalu singkat).</p>
-<button class="nav-toggle" type="button" aria-controls="site-navigation" aria-expanded="false"><span aria-hidden="true">&#9776;</span> Menu</button><nav id="site-navigation" hidden><a href="index.html">⌂ Beranda</a><b>Isi:</b> <a href="#a">1 Jenis segmentasi</a><a href="#b">2 Metrik</a><a href="#c">3 Loss function</a><a href="#d">4 Arsitektur semantic</a><a href="#e">5 Instance</a><a href="#f">6 Transformer</a><a href="#g">7 Panoptic</a><a href="#h">8 Ringkasan &amp; kuis</a></nav>
+<div class="theme-control theme-floating" role="group" aria-label="Pilih tema"><span class="theme-control-label">Tema</span><button type="button" data-theme-choice="system" aria-pressed="false">Sistem</button><button type="button" data-theme-choice="light" aria-pressed="false">Terang</button><button type="button" data-theme-choice="dark" aria-pressed="false">Gelap</button></div><button class="nav-toggle" type="button" aria-controls="site-navigation" aria-expanded="false"><span aria-hidden="true">&#9776;</span> Menu</button><nav id="site-navigation" hidden><a href="index.html">⌂ Beranda</a><b>Isi:</b> <a href="#a">1 Jenis segmentasi</a><a href="#b">2 Metrik</a><a href="#c">3 Loss function</a><a href="#d">4 Arsitektur semantic</a><a href="#e">5 Instance</a><a href="#f">6 Transformer</a><a href="#g">7 Panoptic</a><a href="#h">8 Ringkasan &amp; kuis</a></nav>
 <div class="k"><b>Legenda:</b> kotak hijau = poin kunci; kotak kuning = catatan kritis.</div>
 
 <h2 id="a">1. Tiga jenis segmentasi</h2>
@@ -210,5 +221,22 @@ nav#site-navigation>a:first-child{background:var(--accent);color:#fff}
   document.addEventListener('click', event => {
     if (!menu.hidden && !menu.contains(event.target) && !button.contains(event.target)) closeMenu();
   });
+})();
+</script><script>
+(() => {
+  const root = document.documentElement;
+  const controls = [...document.querySelectorAll('[data-theme-choice]')];
+  const valid = ['system', 'light', 'dark'];
+  const applyTheme = choice => {
+    const mode = valid.includes(choice) ? choice : 'system';
+    if (mode === 'system') root.removeAttribute('data-theme');
+    else root.dataset.theme = mode;
+    controls.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.themeChoice === mode)));
+    try { localStorage.setItem('pcd-theme', mode); } catch (_) {}
+  };
+  let saved = 'system';
+  try { saved = localStorage.getItem('pcd-theme') || 'system'; } catch (_) {}
+  applyTheme(saved);
+  controls.forEach(button => button.addEventListener('click', () => applyTheme(button.dataset.themeChoice)));
 })();
 </script></body></html>

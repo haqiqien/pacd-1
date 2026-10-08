@@ -1,17 +1,16 @@
 <!doctype html>
-<html lang="id" data-theme="light">
+<html lang="id">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5f7fb">
-  <meta name="description" content="Pusat belajar Pengolahan Citra Digital: materi pengantar, transformasi intensitas, filtering, segmentasi, dan morfologi.">
+  <meta name="description" content="Pusat belajar Pengolahan Citra Digital: materi pengantar, transformasi intensitas, filtering spasial dan frekuensi, deteksi tepi, segmentasi, serta morfologi.">
   <title>Belajar Pengolahan Citra Digital</title>
   <script>
     try {
       const savedTheme = localStorage.getItem('pcd-theme');
-      if (savedTheme === 'dark' || savedTheme === 'light') {
-        document.documentElement.dataset.theme = savedTheme;
-      }
+      if (savedTheme === 'dark' || savedTheme === 'light') document.documentElement.dataset.theme = savedTheme;
+      else document.documentElement.removeAttribute('data-theme');
     } catch (_) {}
   </script>
   <style>
@@ -55,8 +54,6 @@
     .topbar { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-block: 22px; }
     .brand { display: inline-flex; align-items: center; gap: 11px; color: var(--text); font-weight: 750; text-decoration: none; letter-spacing: -.02em; }
     .brand-mark { display: grid; width: 38px; height: 38px; place-items: center; border-radius: 12px; background: var(--accent); color: #fff; font-size: 19px; }
-    .theme-toggle { display: inline-flex; align-items: center; gap: 9px; border: 1px solid var(--line); border-radius: 999px; padding: 9px 14px; background: var(--surface); color: var(--text); font: inherit; font-size: 14px; font-weight: 650; cursor: pointer; }
-    .theme-toggle:hover { border-color: var(--accent); }
     :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
     .hero { position: relative; overflow: hidden; margin-top: 30px; padding: clamp(30px, 6vw, 66px); border: 1px solid var(--line); border-radius: 28px; background: linear-gradient(120deg, var(--surface) 15%, var(--surface-soft)); box-shadow: var(--shadow); }
     .hero::after { position: absolute; top: -95px; right: -50px; width: 290px; height: 290px; border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent); border-radius: 50%; box-shadow: 0 0 0 30px color-mix(in srgb, var(--accent) 5%, transparent), 0 0 0 60px color-mix(in srgb, var(--accent) 4%, transparent); content: ""; pointer-events: none; }
@@ -82,8 +79,21 @@
     .card:hover .arrow { transform: translateX(4px); }
     footer { border-top: 1px solid var(--line); padding-block: 20px 30px; color: var(--muted); font-size: 13px; }
     @media (max-width: 820px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .hero::after { right: -160px; } }
-    @media (max-width: 560px) { .wrap { width: min(100% - 28px, 1120px); } .topbar { padding-block: 15px; } .brand-name { max-width: 180px; font-size: 14px; line-height: 1.2; } .theme-toggle { padding: 8px 11px; font-size: 13px; } .theme-toggle .toggle-text { display: none; } .hero { margin-top: 18px; border-radius: 22px; } .section-head { align-items: start; flex-direction: column; gap: 8px; margin-top: 38px; } .grid { grid-template-columns: 1fr; gap: 12px; } .card { min-height: 0; padding: 19px; } .card p { margin-bottom: 16px; } }
+    @media (max-width: 560px) { .wrap { width: min(100% - 28px, 1120px); } .topbar { padding-block: 15px; } .brand-name { max-width: 180px; font-size: 14px; line-height: 1.2; } .hero { margin-top: 18px; border-radius: 22px; } .section-head { align-items: start; flex-direction: column; gap: 8px; margin-top: 38px; } .grid { grid-template-columns: 1fr; gap: 12px; } .card { min-height: 0; padding: 19px; } .card p { margin-bottom: 16px; } }
     @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; } }
+  
+/* Pemilih tema bersama: default sistem, serta mode terang/gelap paksa. */
+:root{--page:#f5f7fb;--surface:#fff;--surface-soft:#edf3fb;--text:#19283b;--muted:#627187;--line:#dce5ef;--accent:#176b65;--accent-strong:#10534f;--accent-soft:#e1f2ef;--shadow:0 14px 36px rgba(27,48,70,.08);--bg:var(--page);--surface-color:var(--surface);--fg:var(--text);--tx:var(--text);--ink:var(--text);--mut:var(--muted);--mu:var(--muted);--bd:var(--line);--ln:var(--line);--ac:var(--accent);--hl:var(--accent);--card:var(--surface);--bx:var(--surface);--cd:var(--surface-soft);--acbg:var(--accent-soft);--tip:var(--surface-soft);--ok:var(--accent-soft);--warn:#f9f1dd;--wabg:#f9f1dd;--crit:#fbe7e5;--rebg:#fbe7e5;--color:var(--text);color-scheme:light}
+:root[data-theme="dark"]{--page:#101923;--surface:#182431;--surface-soft:#202f3e;--text:#edf4f7;--muted:#a6b6c6;--line:#304252;--accent:#72d1bf;--accent-strong:#9ce3d5;--accent-soft:#203d3d;--shadow:0 14px 36px rgba(0,0,0,.2);--warn:#3a321a;--wabg:#3a321a;--crit:#35201f;--rebg:#35201f;--color:var(--text);color-scheme:dark}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]):not([data-theme="dark"]){--page:#101923;--surface:#182431;--surface-soft:#202f3e;--text:#edf4f7;--muted:#a6b6c6;--line:#304252;--accent:#72d1bf;--accent-strong:#9ce3d5;--accent-soft:#203d3d;--shadow:0 14px 36px rgba(0,0,0,.2);--warn:#3a321a;--wabg:#3a321a;--crit:#35201f;--rebg:#35201f;--color:var(--text);color-scheme:dark}}
+.theme-control{display:inline-flex;align-items:center;gap:2px;padding:3px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--text);font:600 12px/1.2 system-ui,sans-serif}
+.theme-control button{min-height:32px;padding:6px 9px;border:0;border-radius:7px;background:transparent;color:var(--muted);font:inherit;cursor:pointer}
+.theme-control button[aria-pressed="true"]{background:var(--accent-soft);color:var(--accent-strong)}
+.theme-control button:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.theme-control-label{padding:0 5px;color:var(--muted);font-size:11px;font-weight:700}
+body>.theme-control{position:fixed;top:12px;right:12px;z-index:1002}
+@media(max-width:560px){body>.theme-control{top:8px;right:8px}.theme-control-label{display:none}.theme-control button{padding:6px 7px}}
+    @media(max-width:560px){.topbar{flex-wrap:wrap}.topbar .theme-control{margin-left:auto}}
   </style>
 </head>
 <body>
@@ -93,17 +103,15 @@
         <span class="brand-mark" aria-hidden="true">▧</span>
         <span class="brand-name">Pengolahan Citra Digital</span>
       </a>
-      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Aktifkan mode gelap" aria-pressed="false">
-        <span id="theme-icon" aria-hidden="true">☾</span><span class="toggle-text" id="theme-label">Mode gelap</span>
-      </button>
+      <div class="theme-control" role="group" aria-label="Pilih tema"><span class="theme-control-label">Tema</span><button type="button" data-theme-choice="system" aria-pressed="false">Sistem</button><button type="button" data-theme-choice="light" aria-pressed="false">Terang</button><button type="button" data-theme-choice="dark" aria-pressed="false">Gelap</button></div>
     </header>
 
     <main>
       <section class="hero" aria-labelledby="page-title">
         <p class="eyebrow"><span aria-hidden="true">✦</span> Ruang belajar digital</p>
         <h1 id="page-title">Kenali gambar, <span style="color:var(--accent)">olah informasinya.</span></h1>
-        <p class="hero-copy">Jelajahi konsep Pengolahan Citra Digital secara bertahap, dari dasar citra hingga teknik filtering, segmentasi, dan morfologi.</p>
-        <div class="hero-note"><span aria-hidden="true">◎</span> 6 materi belajar · Buka kapan saja</div>
+        <p class="hero-copy">Jelajahi konsep Pengolahan Citra Digital secara bertahap, dari dasar citra hingga filtering frekuensi, deteksi tepi, segmentasi, dan morfologi.</p>
+        <div class="hero-note"><span aria-hidden="true">◎</span> 8 materi belajar · Buka kapan saja</div>
       </section>
 
       <section aria-labelledby="materials-title">
@@ -165,27 +173,23 @@
     </main>
     <footer>Materi Pengolahan Citra Digital <span aria-hidden="true">·</span> Selamat belajar.</footer>
   </div>
-  <script>
-    (() => {
-      const root = document.documentElement;
-      const button = document.getElementById('theme-toggle');
-      const label = document.getElementById('theme-label');
-      const icon = document.getElementById('theme-icon');
-      const updateButton = () => {
-        const dark = root.dataset.theme === 'dark';
-        button.setAttribute('aria-pressed', String(dark));
-        button.setAttribute('aria-label', dark ? 'Aktifkan mode terang' : 'Aktifkan mode gelap');
-        label.textContent = dark ? 'Mode terang' : 'Mode gelap';
-        icon.textContent = dark ? '☀' : '☾';
-      };
-      updateButton();
-      button.addEventListener('click', () => {
-        const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
-        root.dataset.theme = next;
-        try { localStorage.setItem('pcd-theme', next); } catch (_) {}
-        updateButton();
-      });
-    })();
-  </script>
-</body>
+  
+<script>
+(() => {
+  const root = document.documentElement;
+  const controls = [...document.querySelectorAll('[data-theme-choice]')];
+  const valid = ['system', 'light', 'dark'];
+  const applyTheme = choice => {
+    const mode = valid.includes(choice) ? choice : 'system';
+    if (mode === 'system') root.removeAttribute('data-theme');
+    else root.dataset.theme = mode;
+    controls.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.themeChoice === mode)));
+    try { localStorage.setItem('pcd-theme', mode); } catch (_) {}
+  };
+  let saved = 'system';
+  try { saved = localStorage.getItem('pcd-theme') || 'system'; } catch (_) {}
+  applyTheme(saved);
+  controls.forEach(button => button.addEventListener('click', () => applyTheme(button.dataset.themeChoice)));
+})();
+</script></body>
 </html>
