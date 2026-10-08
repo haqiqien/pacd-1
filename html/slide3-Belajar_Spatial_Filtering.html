@@ -10,7 +10,7 @@ code{background:#eee;padding:1px 5px;border-radius:3px}nav a{display:inline-bloc
 @media (prefers-color-scheme:dark){body{background:#1b1b1b;color:#ddd}h1{color:#f4a261}h2{color:#8ab4f8}h3{color:#9ecbff}.box{background:#3a2a14}.crit{background:#3b1d1a}.ok{background:#16301a}.m td{background:#262626}details{background:#222}code{background:#333}}</style></head><body>
 <h1>Spatial Filtering (Pemfilteran Spasial)</h1>
 <p>Panduan belajar dari slide Agus Harjoko, bersumber dari <i>Digital Image Processing</i> (Gonzalez &amp; Woods, ed. ke-4, Bab 3). Semua gambar di bawah dibuat dengan Python (NumPy + Matplotlib) memakai citra uji buatan sendiri, jadi bisa dilihat langsung efek tiap filter.</p>
-<nav><b>Isi:</b> <a href="#a">1 Konsep</a><a href="#b">2 Korelasi/Konvolusi</a><a href="#c">3 Kernel</a><a href="#d">4 Lowpass</a><a href="#e">5 Median</a><a href="#f">6 Highpass</a><a href="#g">7 Hubungan filter</a><a href="#h">8 Kritis</a><a href="#i">9 Latihan</a></nav>
+<nav><a href="index.html">⌂ Beranda</a><b>Isi:</b> <a href="#a">1 Konsep</a><a href="#b">2 Korelasi/Konvolusi</a><a href="#c">3 Kernel</a><a href="#d">4 Lowpass</a><a href="#e">5 Median</a><a href="#f">6 Highpass</a><a href="#g">7 Hubungan filter</a><a href="#h">8 Kritis</a><a href="#i">9 Latihan</a></nav>
 
 <h2 id="a">1. Apa itu spatial filtering? (slide 3-4)</h2>
 <p>Citra adalah matriks angka (intensitas). <b>Filtering spasial</b> artinya mengubah nilai tiap piksel berdasarkan nilai piksel itu <i>dan tetangganya</i>. "Spasial" berarti kita bekerja langsung pada piksel (posisi x,y), bukan pada frekuensi.</p>
