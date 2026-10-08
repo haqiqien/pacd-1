@@ -1,15 +1,18 @@
 ﻿name: Deploy GitHub Pages
 
+# Jalankan saat ada push ke main atau saat workflow dipicu manual.
 on:
   push:
     branches: [main]
   workflow_dispatch:
 
+# Izin yang diperlukan untuk mengunggah dan menerbitkan situs.
 permissions:
   contents: read
   pages: write
   id-token: write
 
+# Batalkan deploy lama jika ada deploy baru yang sedang berjalan.
 concurrency:
   group: pages
   cancel-in-progress: true
@@ -23,9 +26,11 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - uses: actions/configure-pages@v5
+      # Unggah folder html sebagai berkas situs yang akan diterbitkan.
       - uses: actions/upload-pages-artifact@v4
         with:
           path: html
+      # Terbitkan berkas ke GitHub Pages.
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
