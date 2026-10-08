@@ -1,0 +1,40 @@
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editors and IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary and backup files
+*.tmp
+*.temp
+*.bak
+*.old
+*.orig
+*.rej
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Common generated folders
+node_modules/
+dist/
+build/
+coverage/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+source-materi\V5. Segmentation-1-With Video-1.m4v
+source-materi\V4. Filtering In The Frequency Domain-With Video-1.m4v
+# Source videos excluded from the repository
+/source-materi/V4. Filtering In The Frequency Domain-With Video-1.m4v
+/source-materi/V5. Segmentation-1-With Video-1.m4v
