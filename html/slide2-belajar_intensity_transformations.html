@@ -45,7 +45,41 @@ nav#site-navigation a{display:block;margin:2px 0;padding:8px 10px;border:0;borde
 nav#site-navigation a:hover,nav#site-navigation a:focus-visible{background:var(--bg,var(--cd,#f2f5f7));outline:none}
 nav#site-navigation>a:first-child{margin:0 0 10px;background:var(--ac,#0b6e8a);color:#fff;font-weight:700}
 nav#site-navigation>a:first-child:hover{opacity:.9}
-@media(max-width:480px){.nav-toggle{top:8px;left:8px}nav#site-navigation,nav#site-navigation[hidden]{top:58px!important;left:8px!important;width:calc(100vw - 16px)!important;max-height:calc(100dvh - 66px)!important}}</style></head><body>
+@media(max-width:480px){.nav-toggle{top:8px;left:8px}nav#site-navigation,nav#site-navigation[hidden]{top:58px!important;left:8px!important;width:calc(100vw - 16px)!important;max-height:calc(100dvh - 66px)!important}}
+/* Tema materi diselaraskan dengan beranda. */
+:root{--page:#f5f7fb;--surface:#fff;--surface-soft:#edf3fb;--text:#19283b;--muted:#627187;--line:#dce5ef;--accent:#176b65;--accent-strong:#10534f;--accent-soft:#e1f2ef;--shadow:0 14px 36px rgba(27,48,70,.08);--bg:var(--page);--fg:var(--text);--tx:var(--text);--ink:var(--text);--mut:var(--muted);--mu:var(--muted);--bd:var(--line);--ln:var(--line);--ac:var(--accent);--hl:var(--accent);--card:var(--surface);--bx:var(--surface);--cd:var(--surface-soft);color-scheme:light}
+@media(prefers-color-scheme:dark){:root{--page:#101923;--surface:#182431;--surface-soft:#202f3e;--text:#edf4f7;--muted:#a6b6c6;--line:#304252;--accent:#72d1bf;--accent-strong:#9ce3d5;--accent-soft:#203d3d;color-scheme:dark}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--page)}
+body{display:block;width:auto;max-width:none;min-height:100vh;margin:0;padding:0;background:var(--page);color:var(--text);font:16px/1.65 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+main,.w{width:min(1040px,calc(100% - 40px));max-width:1040px;margin:24px auto 48px;padding:72px clamp(22px,5vw,56px) 56px;border:1px solid var(--line);border-radius:28px;background:var(--surface);box-shadow:var(--shadow)}
+.w{display:block;grid-template-columns:none}
+main{min-width:0}
+body>h1,body>p,body>section,body>figure,body>.box,body>.crit,body>.ok,body>.row,body>details,body>table,body>.m,body>.flow,body>.f,body>.sc{width:min(1040px,calc(100% - 40px));margin-left:auto;margin-right:auto}
+body>h1:first-of-type{padding-top:82px}
+h1,h2,h3{color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;letter-spacing:-.025em}
+h1{font-size:clamp(2rem,5vw,3rem);line-height:1.12;margin:0 0 16px}
+h2{font-size:clamp(1.4rem,3vw,1.9rem);line-height:1.2;margin-top:2.3em;padding-top:.7em;border-color:var(--line)}
+h3{font-size:1.15rem;line-height:1.35;color:var(--accent-strong)}
+p,li{color:var(--text)}
+.sub,figcaption{color:var(--muted)}
+a{color:var(--accent-strong)}
+.box,.k,.c,.crit,.ok,.warn,.tip,.t,.kritis,.rumus,details,pre{border-color:var(--line);border-radius:14px;background:var(--surface-soft);color:var(--text)}
+.box,.k,.c,.crit,.ok,.warn,.tip,.kritis{padding:16px 20px}
+details{padding:12px 16px}
+pre{padding:16px 20px;overflow:auto}
+code{border-radius:5px;background:var(--surface-soft);color:var(--text)}
+table,.wrap table,.sc table{border-color:var(--line);background:var(--surface);color:var(--text)}
+th{background:var(--surface-soft);color:var(--text)}
+th,td{border-color:var(--line);padding:9px 12px}
+img,figure img{border-color:var(--line);border-radius:12px}
+.nav-toggle{border-color:var(--line);border-radius:10px;background:var(--surface);color:var(--text);box-shadow:0 4px 14px rgba(27,48,70,.08)}
+nav#site-navigation,nav#site-navigation[hidden]{border-color:var(--line)!important;border-radius:14px!important;background:var(--surface)!important;box-shadow:var(--shadow)!important}
+nav#site-navigation b{color:var(--muted)}
+nav#site-navigation a{color:var(--text)}
+nav#site-navigation a:hover,nav#site-navigation a:focus-visible{background:var(--surface-soft)}
+nav#site-navigation>a:first-child{background:var(--accent);color:#fff}
+@media(max-width:700px){main,.w{width:calc(100% - 24px);margin:12px auto 24px;padding:68px 18px 36px;border-radius:20px}body>h1:first-of-type{padding-top:72px}body>h1,body>p,body>section,body>figure,body>.box,body>.crit,body>.ok,body>.row,body>details,body>table,body>.m,body>.flow,body>.f,body>.sc{width:calc(100% - 24px)}}</style></head><body>
 <button class="nav-toggle" type="button" aria-controls="site-navigation" aria-expanded="false"><span aria-hidden="true">&#9776;</span> Menu</button><nav id="site-navigation" hidden><a href="index.html">⌂ Beranda</a><b>Daftar isi</b><a href="#s1">1. Gambaran besar: apa itu peningkatan citra?</a><a href="#s2">2. Transformasi dasar: negatif, log, gamma</a><a href="#s3">3. Piecewise linear, slicing, dan bit-plane</a><a href="#s4">4. Histogram dan Histogram Equalization</a><a href="#s5">5. HE lanjutan: Global HE, AHE, CLAHE</a><a href="#s6">6. Histogram specification (matching)</a><a href="#s7">7. Ringkasan, perbandingan, dan latihan</a></nav><main><h1>Intensity Transformations</h1><p class="sub">Panduan belajar lengkap berdasarkan slide Agus Harjoko (Gonzalez &amp; Woods, Bab 3). Gambar dibuat dengan Python (numpy, matplotlib, scikit-image) dari citra buatan.</p><section id="s1"><h2>1. Gambaran besar: apa itu peningkatan citra?</h2>
 <p><b>Enhancement</b> = mengubah citra agar lebih berguna untuk keperluan tertentu. Kata kuncinya <i>keperluan tertentu</i>: citra yang bagus untuk dokter belum tentu bagus untuk algoritma deteksi tepi. Karena itu slide menyebut enhancement sebagai kumpulan trik <i>ad hoc</i>, tidak ada teori umum yang menjamin hasil "terbaik".</p>
 <p><b>Spatial domain</b> artinya kita mengubah nilai piksel langsung. Lawannya <b>transform domain</b> (misalnya Fourier), di mana citra diubah dulu ke domain frekuensi.</p>
