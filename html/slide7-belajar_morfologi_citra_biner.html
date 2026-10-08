@@ -15,8 +15,33 @@ h1{font:700 30px/1.25 system-ui,sans-serif}h2{font:700 24px system-ui,sans-serif
 img{max-width:100%;border:1px solid var(--bd);background:#fff}
 details{background:var(--bx);padding:8px 14px;margin:8px 0}summary{cursor:pointer;font-family:system-ui,sans-serif;font-weight:600}
 @media(max-width:800px){.w{display:block}nav{position:static;height:auto;border:0}}
-</style></head><body><div class="w">
-<nav><a href="index.html">⌂ Beranda</a><b>Daftar isi</b><a href="#p">0. Peta besar</a><a href="#s">1. Teori himpunan</a><a href="#e">2. SE, erosi, dilasi</a><a href="#o">3. Opening &amp; closing</a><a href="#h">4. Hit-or-miss</a><a href="#a">5. Aplikasi dasar</a><a href="#l">6. Convex hull, thinning</a><a href="#k">7. Skeleton &amp; pruning</a><a href="#r">8. Ringkasan</a><a href="#q">9. Latihan</a></nav>
+
+/* Navigasi samping yang jelas dan nyaman disentuh. */
+nav{z-index:5;background:var(--card,var(--bx));box-shadow:2px 0 16px rgba(20,35,50,.06)}
+nav a{line-height:1.45;padding:8px 10px;border-radius:7px;transition:background-color .18s,color .18s,border-color .18s}
+nav>a:first-child{margin-bottom:18px;padding:10px 12px;background:var(--ac);color:#fff!important;border:0;border-radius:9px;font-weight:700;box-shadow:0 3px 9px rgba(15,60,90,.16)}
+nav>a:first-child:hover{filter:brightness(1.08)}
+nav b{padding:0 8px;color:var(--mut,var(--mu));font-size:.76rem;letter-spacing:.08em;text-transform:uppercase}
+nav a:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+@media(max-width:860px){nav{z-index:auto;max-height:42vh;overflow:auto;padding:14px 16px;box-shadow:0 3px 14px rgba(20,35,50,.06)}nav>a:first-child{display:inline-block;margin:0 0 10px}nav b{width:100%;margin:4px 0}}
+/* Gaya minimalis untuk navigasi. */
+nav{box-shadow:none;border-radius:8px}
+nav a{transition:color .15s,background-color .15s}
+nav>a:first-child{box-shadow:none;border-radius:7px}
+nav>a:first-child:hover{filter:none;opacity:.88}
+/* Menu hamburger responsif. */
+.nav-toggle{position:fixed;top:12px;left:12px;z-index:1002;display:inline-flex;align-items:center;gap:8px;min-height:42px;padding:8px 13px;border:1px solid var(--bd,var(--line,#d5dde5));border-radius:8px;background:var(--card,var(--bx,#fff));color:var(--fg,var(--tx,var(--ink,#1f2430)));font:600 14px/1.2 system-ui,sans-serif;cursor:pointer}
+.nav-toggle:hover{border-color:var(--ac,#0b6e8a)}
+.nav-toggle:focus-visible{outline:3px solid var(--ac,#0b6e8a);outline-offset:2px}
+nav#site-navigation,nav#site-navigation[hidden]{position:fixed!important;top:62px!important;left:12px!important;z-index:1001!important;display:block!important;width:min(340px,calc(100vw - 24px))!important;height:auto!important;max-height:calc(100dvh - 74px)!important;overflow:auto!important;align-self:auto!important;margin:0!important;padding:12px!important;border:1px solid var(--bd,var(--line,#d5dde5))!important;border-radius:10px!important;background:var(--card,var(--bx,#fff))!important;box-shadow:0 8px 24px rgba(0,0,0,.14)!important;font:14px/1.4 system-ui,sans-serif!important}
+nav#site-navigation[hidden]{display:none!important}
+nav#site-navigation b{display:block;width:auto;margin:4px 8px 8px;padding:0;color:var(--mut,var(--mu,var(--muted,#5d6575)));font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+nav#site-navigation a{display:block;margin:2px 0;padding:8px 10px;border:0;border-radius:6px;background:transparent;color:var(--fg,var(--tx,var(--ink,#1f2430)));font:500 14px/1.4 system-ui,sans-serif;text-align:left;text-decoration:none;white-space:normal}
+nav#site-navigation a:hover,nav#site-navigation a:focus-visible{background:var(--bg,var(--cd,#f2f5f7));outline:none}
+nav#site-navigation>a:first-child{margin:0 0 10px;background:var(--ac,#0b6e8a);color:#fff;font-weight:700}
+nav#site-navigation>a:first-child:hover{opacity:.9}
+@media(max-width:480px){.nav-toggle{top:8px;left:8px}nav#site-navigation,nav#site-navigation[hidden]{top:58px!important;left:8px!important;width:calc(100vw - 16px)!important;max-height:calc(100dvh - 66px)!important}}</style></head><body><div class="w">
+<button class="nav-toggle" type="button" aria-controls="site-navigation" aria-expanded="false"><span aria-hidden="true">&#9776;</span> Menu</button><nav id="site-navigation" hidden><a href="index.html">⌂ Beranda</a><b>Daftar isi</b><a href="#p">0. Peta besar</a><a href="#s">1. Teori himpunan</a><a href="#e">2. SE, erosi, dilasi</a><a href="#o">3. Opening &amp; closing</a><a href="#h">4. Hit-or-miss</a><a href="#a">5. Aplikasi dasar</a><a href="#l">6. Convex hull, thinning</a><a href="#k">7. Skeleton &amp; pruning</a><a href="#r">8. Ringkasan</a><a href="#q">9. Latihan</a></nav>
 <main>
 <h1>Morphological Image Processing: Citra Biner</h1>
 <p>Panduan belajar dari slide V7 (buku Gonzalez &amp; Woods, <i>Digital Image Processing</i>, Bab 9). Gambar di bawah dibuat dengan Python (NumPy, SciPy, Matplotlib) pada citra contoh yang sama, jadi Anda bisa membandingkan efek tiap operasi secara langsung. Piksel hitam = foreground (nilai 1), putih = background (0).</p>
@@ -138,4 +163,27 @@ details{background:var(--bx);padding:8px 14px;margin:8px 0}summary{cursor:pointe
 <details><summary>3. Apa beda hole filling dan connected components secara rumus?</summary>Hanya pembatasnya: Iᶜ untuk hole filling, I untuk connected components.</details>
 <details><summary>4. Apa yang terjadi jika SE hit-or-miss semuanya don't care?</summary>Semua posisi cocok, sehingga hasilnya tidak informatif. Pola harus punya cukup piksel 1 dan 0 agar spesifik.</details>
 <details><summary>5. Kerjakan manual: grid 5×5 dengan blok foreground 3×3 di tengah, SE 3×3. Hasil erosi dan dilasi?</summary>Erosi: 1 piksel di tengah. Dilasi: blok 5×5 penuh.</details>
-</main></div></body></html>
+</main></div><script>
+(() => {
+  const button = document.querySelector('.nav-toggle');
+  const menu = document.getElementById('site-navigation');
+  if (!button || !menu) return;
+  const closeMenu = () => {
+    menu.hidden = true;
+    button.setAttribute('aria-expanded', 'false');
+  };
+  button.addEventListener('click', () => {
+    menu.hidden = !menu.hidden;
+    button.setAttribute('aria-expanded', String(!menu.hidden));
+  });
+  menu.addEventListener('click', event => {
+    if (event.target.closest('a')) closeMenu();
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') closeMenu();
+  });
+  document.addEventListener('click', event => {
+    if (!menu.hidden && !menu.contains(event.target) && !button.contains(event.target)) closeMenu();
+  });
+})();
+</script></body></html>

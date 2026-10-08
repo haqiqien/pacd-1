@@ -7,10 +7,37 @@ img{max-width:100%;border:1px solid #ccc;border-radius:4px;background:#fff}figca
 table{border-collapse:collapse;margin:8px 0}th,td{border:1px solid #999;padding:5px 10px;text-align:center}th{background:#1f4e79;color:#fff}
 .m td{background:#fff;min-width:44px}.row{display:flex;gap:24px;flex-wrap:wrap;align-items:center}
 code{background:#eee;padding:1px 5px;border-radius:3px}nav a{display:inline-block;margin:2px 6px}details{background:#fff;border:1px solid #ccc;padding:6px 12px;margin:6px 0;border-radius:4px}
-@media (prefers-color-scheme:dark){body{background:#1b1b1b;color:#ddd}h1{color:#f4a261}h2{color:#8ab4f8}h3{color:#9ecbff}.box{background:#3a2a14}.crit{background:#3b1d1a}.ok{background:#16301a}.m td{background:#262626}details{background:#222}code{background:#333}}</style></head><body>
+@media (prefers-color-scheme:dark){body{background:#1b1b1b;color:#ddd}h1{color:#f4a261}h2{color:#8ab4f8}h3{color:#9ecbff}.box{background:#3a2a14}.crit{background:#3b1d1a}.ok{background:#16301a}.m td{background:#262626}details{background:#222}code{background:#333}}
+/* Navigasi atas dengan tautan berbentuk tombol dan jarak yang rapi. */
+nav{display:flex;flex-wrap:wrap;align-items:center;gap:7px 9px;padding:14px 16px;margin:18px 0 24px;background:var(--card,var(--bx,#fff));border:1px solid var(--bd,#d5dde5);border-radius:14px;box-shadow:0 5px 18px rgba(20,35,50,.06);font:14px/1.45 system-ui,sans-serif}
+nav br{display:none}
+nav b{width:100%;margin:0 0 2px;color:var(--mut,var(--mu,#5a6877));font-size:.76rem;letter-spacing:.08em;text-transform:uppercase}
+nav a{display:inline-flex;align-items:center;min-height:36px;margin:0;padding:7px 11px;border:1px solid transparent;border-radius:9px;background:transparent;color:var(--ac,#0b6e8a);font-weight:600;text-decoration:none;white-space:normal;transition:background-color .18s,border-color .18s,transform .18s}
+nav a:hover{background:var(--bg,#f6f8fa);border-color:var(--bd,#d5dde5);transform:translateY(-1px)}
+nav>a:first-child{background:var(--ac,#0b6e8a);color:#fff;border-color:var(--ac,#0b6e8a);font-weight:700}
+nav>a:first-child:hover{filter:brightness(1.08)}
+nav a:focus-visible{outline:3px solid var(--ac,#0b6e8a);outline-offset:2px}
+@media(max-width:600px){nav{gap:6px;padding:12px;border-radius:12px}nav a{min-height:40px;padding:8px 10px}}
+/* Gaya minimalis untuk navigasi. */
+nav{box-shadow:none;border-radius:8px}
+nav a{transition:color .15s,background-color .15s}
+nav>a:first-child{box-shadow:none;border-radius:7px}
+nav>a:first-child:hover{filter:none;opacity:.88}
+/* Menu hamburger responsif. */
+.nav-toggle{position:fixed;top:12px;left:12px;z-index:1002;display:inline-flex;align-items:center;gap:8px;min-height:42px;padding:8px 13px;border:1px solid var(--bd,var(--line,#d5dde5));border-radius:8px;background:var(--card,var(--bx,#fff));color:var(--fg,var(--tx,var(--ink,#1f2430)));font:600 14px/1.2 system-ui,sans-serif;cursor:pointer}
+.nav-toggle:hover{border-color:var(--ac,#0b6e8a)}
+.nav-toggle:focus-visible{outline:3px solid var(--ac,#0b6e8a);outline-offset:2px}
+nav#site-navigation,nav#site-navigation[hidden]{position:fixed!important;top:62px!important;left:12px!important;z-index:1001!important;display:block!important;width:min(340px,calc(100vw - 24px))!important;height:auto!important;max-height:calc(100dvh - 74px)!important;overflow:auto!important;align-self:auto!important;margin:0!important;padding:12px!important;border:1px solid var(--bd,var(--line,#d5dde5))!important;border-radius:10px!important;background:var(--card,var(--bx,#fff))!important;box-shadow:0 8px 24px rgba(0,0,0,.14)!important;font:14px/1.4 system-ui,sans-serif!important}
+nav#site-navigation[hidden]{display:none!important}
+nav#site-navigation b{display:block;width:auto;margin:4px 8px 8px;padding:0;color:var(--mut,var(--mu,var(--muted,#5d6575)));font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+nav#site-navigation a{display:block;margin:2px 0;padding:8px 10px;border:0;border-radius:6px;background:transparent;color:var(--fg,var(--tx,var(--ink,#1f2430)));font:500 14px/1.4 system-ui,sans-serif;text-align:left;text-decoration:none;white-space:normal}
+nav#site-navigation a:hover,nav#site-navigation a:focus-visible{background:var(--bg,var(--cd,#f2f5f7));outline:none}
+nav#site-navigation>a:first-child{margin:0 0 10px;background:var(--ac,#0b6e8a);color:#fff;font-weight:700}
+nav#site-navigation>a:first-child:hover{opacity:.9}
+@media(max-width:480px){.nav-toggle{top:8px;left:8px}nav#site-navigation,nav#site-navigation[hidden]{top:58px!important;left:8px!important;width:calc(100vw - 16px)!important;max-height:calc(100dvh - 66px)!important}}</style></head><body>
 <h1>Spatial Filtering (Pemfilteran Spasial)</h1>
 <p>Panduan belajar dari slide Agus Harjoko, bersumber dari <i>Digital Image Processing</i> (Gonzalez &amp; Woods, ed. ke-4, Bab 3). Semua gambar di bawah dibuat dengan Python (NumPy + Matplotlib) memakai citra uji buatan sendiri, jadi bisa dilihat langsung efek tiap filter.</p>
-<nav><a href="index.html">⌂ Beranda</a><b>Isi:</b> <a href="#a">1 Konsep</a><a href="#b">2 Korelasi/Konvolusi</a><a href="#c">3 Kernel</a><a href="#d">4 Lowpass</a><a href="#e">5 Median</a><a href="#f">6 Highpass</a><a href="#g">7 Hubungan filter</a><a href="#h">8 Kritis</a><a href="#i">9 Latihan</a></nav>
+<button class="nav-toggle" type="button" aria-controls="site-navigation" aria-expanded="false"><span aria-hidden="true">&#9776;</span> Menu</button><nav id="site-navigation" hidden><a href="index.html">⌂ Beranda</a><b>Isi:</b> <a href="#a">1 Konsep</a><a href="#b">2 Korelasi/Konvolusi</a><a href="#c">3 Kernel</a><a href="#d">4 Lowpass</a><a href="#e">5 Median</a><a href="#f">6 Highpass</a><a href="#g">7 Hubungan filter</a><a href="#h">8 Kritis</a><a href="#i">9 Latihan</a></nav>
 
 <h2 id="a">1. Apa itu spatial filtering? (slide 3-4)</h2>
 <p>Citra adalah matriks angka (intensitas). <b>Filtering spasial</b> artinya mengubah nilai tiap piksel berdasarkan nilai piksel itu <i>dan tetangganya</i>. "Spasial" berarti kita bekerja langsung pada piksel (posisi x,y), bukan pada frekuensi.</p>
@@ -103,4 +130,27 @@ code{background:#eee;padding:1px 5px;border-radius:3px}nav a{display:inline-bloc
 <details><summary>6. Kernel Laplacian berpusat −8: c berapa?</summary>c = −1 (koefisien pusat negatif).</details>
 <details><summary>7. Mengapa Sobel lebih tahan noise dibanding Roberts?</summary>Kernelnya 3×3 dengan bobot 2 di tengah sehingga ada efek penghalusan.</details>
 <details><summary>8. Bagaimana mendapatkan highpass dari lowpass?</summary>hp = δ − lp (citra asli dikurangi versi halusnya).</details>
-<p style="margin-top:2em;color:#777"><i>Terimakasih. Selamat belajar!</i></p></body></html>
+<p style="margin-top:2em;color:#777"><i>Terimakasih. Selamat belajar!</i></p><script>
+(() => {
+  const button = document.querySelector('.nav-toggle');
+  const menu = document.getElementById('site-navigation');
+  if (!button || !menu) return;
+  const closeMenu = () => {
+    menu.hidden = true;
+    button.setAttribute('aria-expanded', 'false');
+  };
+  button.addEventListener('click', () => {
+    menu.hidden = !menu.hidden;
+    button.setAttribute('aria-expanded', String(!menu.hidden));
+  });
+  menu.addEventListener('click', event => {
+    if (event.target.closest('a')) closeMenu();
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') closeMenu();
+  });
+  document.addEventListener('click', event => {
+    if (!menu.hidden && !menu.contains(event.target) && !button.contains(event.target)) closeMenu();
+  });
+})();
+</script></body></html>

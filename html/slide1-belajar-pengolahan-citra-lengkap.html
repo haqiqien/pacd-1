@@ -33,13 +33,40 @@ summary{cursor:pointer;font:600 1rem system-ui,sans-serif}
 .flow span{background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:5px 10px}
 .flow i{color:var(--mut);font-style:normal}
 .flow .a{border-color:var(--ac);color:var(--ac)}
-.fig{margin:18px 0;text-align:center}.fig img{max-width:100%;height:auto;border:1px solid var(--bd);border-radius:8px;background:#fff}.fig figcaption{font:14px/1.5 system-ui,sans-serif;color:var(--mut);margin-top:6px}</style>
+.fig{margin:18px 0;text-align:center}.fig img{max-width:100%;height:auto;border:1px solid var(--bd);border-radius:8px;background:#fff}.fig figcaption{font:14px/1.5 system-ui,sans-serif;color:var(--mut);margin-top:6px}
+/* Navigasi atas dengan tautan berbentuk tombol dan jarak yang rapi. */
+nav{display:flex;flex-wrap:wrap;align-items:center;gap:7px 9px;padding:14px 16px;margin:18px 0 24px;background:var(--card,var(--bx,#fff));border:1px solid var(--bd,#d5dde5);border-radius:14px;box-shadow:0 5px 18px rgba(20,35,50,.06);font:14px/1.45 system-ui,sans-serif}
+nav br{display:none}
+nav b{width:100%;margin:0 0 2px;color:var(--mut,var(--mu,#5a6877));font-size:.76rem;letter-spacing:.08em;text-transform:uppercase}
+nav a{display:inline-flex;align-items:center;min-height:36px;margin:0;padding:7px 11px;border:1px solid transparent;border-radius:9px;background:transparent;color:var(--ac,#0b6e8a);font-weight:600;text-decoration:none;white-space:normal;transition:background-color .18s,border-color .18s,transform .18s}
+nav a:hover{background:var(--bg,#f6f8fa);border-color:var(--bd,#d5dde5);transform:translateY(-1px)}
+nav>a:first-child{background:var(--ac,#0b6e8a);color:#fff;border-color:var(--ac,#0b6e8a);font-weight:700}
+nav>a:first-child:hover{filter:brightness(1.08)}
+nav a:focus-visible{outline:3px solid var(--ac,#0b6e8a);outline-offset:2px}
+@media(max-width:600px){nav{gap:6px;padding:12px;border-radius:12px}nav a{min-height:40px;padding:8px 10px}}
+/* Gaya minimalis untuk navigasi. */
+nav{box-shadow:none;border-radius:8px}
+nav a{transition:color .15s,background-color .15s}
+nav>a:first-child{box-shadow:none;border-radius:7px}
+nav>a:first-child:hover{filter:none;opacity:.88}
+/* Menu hamburger responsif. */
+.nav-toggle{position:fixed;top:12px;left:12px;z-index:1002;display:inline-flex;align-items:center;gap:8px;min-height:42px;padding:8px 13px;border:1px solid var(--bd,var(--line,#d5dde5));border-radius:8px;background:var(--card,var(--bx,#fff));color:var(--fg,var(--tx,var(--ink,#1f2430)));font:600 14px/1.2 system-ui,sans-serif;cursor:pointer}
+.nav-toggle:hover{border-color:var(--ac,#0b6e8a)}
+.nav-toggle:focus-visible{outline:3px solid var(--ac,#0b6e8a);outline-offset:2px}
+nav#site-navigation,nav#site-navigation[hidden]{position:fixed!important;top:62px!important;left:12px!important;z-index:1001!important;display:block!important;width:min(340px,calc(100vw - 24px))!important;height:auto!important;max-height:calc(100dvh - 74px)!important;overflow:auto!important;align-self:auto!important;margin:0!important;padding:12px!important;border:1px solid var(--bd,var(--line,#d5dde5))!important;border-radius:10px!important;background:var(--card,var(--bx,#fff))!important;box-shadow:0 8px 24px rgba(0,0,0,.14)!important;font:14px/1.4 system-ui,sans-serif!important}
+nav#site-navigation[hidden]{display:none!important}
+nav#site-navigation b{display:block;width:auto;margin:4px 8px 8px;padding:0;color:var(--mut,var(--mu,var(--muted,#5d6575)));font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+nav#site-navigation a{display:block;margin:2px 0;padding:8px 10px;border:0;border-radius:6px;background:transparent;color:var(--fg,var(--tx,var(--ink,#1f2430)));font:500 14px/1.4 system-ui,sans-serif;text-align:left;text-decoration:none;white-space:normal}
+nav#site-navigation a:hover,nav#site-navigation a:focus-visible{background:var(--bg,var(--cd,#f2f5f7));outline:none}
+nav#site-navigation>a:first-child{margin:0 0 10px;background:var(--ac,#0b6e8a);color:#fff;font-weight:700}
+nav#site-navigation>a:first-child:hover{opacity:.9}
+@media(max-width:480px){.nav-toggle{top:8px;left:8px}nav#site-navigation,nav#site-navigation[hidden]{top:58px!important;left:8px!important;width:calc(100vw - 16px)!important;max-height:calc(100dvh - 66px)!important}}</style>
 </head>
 <body>
 <main>
 <h1>📚 Belajar Pengolahan Citra Digital</h1>
 <p class="sub">Dilengkapi 7 gambar dan diagram buatan Python. Penjelasan lengkap, kritis, dan berbahasa sederhana dari slide "Introduction to Image Processing" (Agus Harjoko, DCSE/DIKE UGM). Buku acuan: Gonzalez &amp; Woods, <i>Digital Image Processing</i>, edisi ke-4 (2018).</p>
-<nav><a href="index.html">⌂ Beranda</a><b>Isi:</b><br>
+<button class="nav-toggle" type="button" aria-controls="site-navigation" aria-expanded="false"><span aria-hidden="true">&#9776;</span> Menu</button><nav id="site-navigation" hidden><a href="index.html">⌂ Beranda</a><b>Isi:</b><br>
 <a href="#dasar">1. Dasar</a><a href="#peta">2. Peta alur</a><a href="#buku">3. Tahap di buku</a><a href="#kuliah">4. Alur kuliah</a><a href="#alat">5. Alat matematika</a><a href="#kritis">6. Catatan kritis</a><a href="#latihan">7. Latihan</a><a href="#cek">8. Checklist</a></nav>
 
 <h2 id="dasar">1. Dasar: apa itu citra digital?</h2>
@@ -170,5 +197,28 @@ summary{cursor:pointer;font:600 1rem system-ui,sans-serif}
 <li>☐ Sudah membaca Bab 1-2 buku Gonzalez &amp; Woods</li></ul>
 <p class="sub">Langkah berikutnya: pilih satu topik (histogram, filtering, atau segmentasi) dan pelajari lebih dalam bersama contoh kode.</p>
 </main>
-</body>
+<script>
+(() => {
+  const button = document.querySelector('.nav-toggle');
+  const menu = document.getElementById('site-navigation');
+  if (!button || !menu) return;
+  const closeMenu = () => {
+    menu.hidden = true;
+    button.setAttribute('aria-expanded', 'false');
+  };
+  button.addEventListener('click', () => {
+    menu.hidden = !menu.hidden;
+    button.setAttribute('aria-expanded', String(!menu.hidden));
+  });
+  menu.addEventListener('click', event => {
+    if (event.target.closest('a')) closeMenu();
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') closeMenu();
+  });
+  document.addEventListener('click', event => {
+    if (!menu.hidden && !menu.contains(event.target) && !button.contains(event.target)) closeMenu();
+  });
+})();
+</script></body>
 </html>

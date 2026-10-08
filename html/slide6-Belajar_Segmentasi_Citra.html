@@ -13,8 +13,33 @@ table{border-collapse:collapse;width:100%;font-size:14px;display:block;overflow-
 code,.f{font-family:Consolas,monospace;background:var(--cd);padding:1px 5px;border-radius:4px}.f{display:block;padding:10px 14px;margin:12px 0;overflow-x:auto}
 details{background:var(--card);border:1px solid var(--ln);border-radius:8px;padding:8px 14px;margin:10px 0}summary{cursor:pointer;font-weight:600}
 @media(max-width:800px){nav{display:none}main{padding:18px}}
-</style></head><body>
-<nav><a href="index.html">⌂ Beranda</a><b>Daftar isi</b><a href="#s0">0. Peta belajar</a><a href="#s1">1. Gambaran besar</a><a href="#s2">2. Threshold dasar</a><a href="#s3">3. Hypothesis testing & Bayes</a><a href="#s4">4. k-means</a><a href="#s5">5. Otsu</a><a href="#s6">6. Memperbaiki threshold</a><a href="#s7">7. Region-based</a><a href="#s8">8. Motion-based (ADI)</a><a href="#s9">9. Perbandingan</a><a href="#s10">10. Catatan kritis slide</a><a href="#s11">11. Latihan soal</a><a href="#s12">12. Contekan rumus</a></nav>
+
+/* Navigasi samping yang jelas dan nyaman disentuh. */
+nav{z-index:5;background:var(--card,var(--bx));box-shadow:2px 0 16px rgba(20,35,50,.06)}
+nav a{line-height:1.45;padding:8px 10px;border-radius:7px;transition:background-color .18s,color .18s,border-color .18s}
+nav>a:first-child{margin-bottom:18px;padding:10px 12px;background:var(--ac);color:#fff!important;border:0;border-radius:9px;font-weight:700;box-shadow:0 3px 9px rgba(15,60,90,.16)}
+nav>a:first-child:hover{filter:brightness(1.08)}
+nav b{padding:0 8px;color:var(--mut,var(--mu));font-size:.76rem;letter-spacing:.08em;text-transform:uppercase}
+nav a:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+@media(max-width:860px){nav{z-index:auto;max-height:42vh;overflow:auto;padding:14px 16px;box-shadow:0 3px 14px rgba(20,35,50,.06)}nav>a:first-child{display:inline-block;margin:0 0 10px}nav b{width:100%;margin:4px 0}}@media(max-width:800px){nav{display:block;height:auto;width:auto;position:static;border:0;border-bottom:1px solid var(--ln)}}
+/* Gaya minimalis untuk navigasi. */
+nav{box-shadow:none;border-radius:8px}
+nav a{transition:color .15s,background-color .15s}
+nav>a:first-child{box-shadow:none;border-radius:7px}
+nav>a:first-child:hover{filter:none;opacity:.88}
+/* Menu hamburger responsif. */
+.nav-toggle{position:fixed;top:12px;left:12px;z-index:1002;display:inline-flex;align-items:center;gap:8px;min-height:42px;padding:8px 13px;border:1px solid var(--bd,var(--line,#d5dde5));border-radius:8px;background:var(--card,var(--bx,#fff));color:var(--fg,var(--tx,var(--ink,#1f2430)));font:600 14px/1.2 system-ui,sans-serif;cursor:pointer}
+.nav-toggle:hover{border-color:var(--ac,#0b6e8a)}
+.nav-toggle:focus-visible{outline:3px solid var(--ac,#0b6e8a);outline-offset:2px}
+nav#site-navigation,nav#site-navigation[hidden]{position:fixed!important;top:62px!important;left:12px!important;z-index:1001!important;display:block!important;width:min(340px,calc(100vw - 24px))!important;height:auto!important;max-height:calc(100dvh - 74px)!important;overflow:auto!important;align-self:auto!important;margin:0!important;padding:12px!important;border:1px solid var(--bd,var(--line,#d5dde5))!important;border-radius:10px!important;background:var(--card,var(--bx,#fff))!important;box-shadow:0 8px 24px rgba(0,0,0,.14)!important;font:14px/1.4 system-ui,sans-serif!important}
+nav#site-navigation[hidden]{display:none!important}
+nav#site-navigation b{display:block;width:auto;margin:4px 8px 8px;padding:0;color:var(--mut,var(--mu,var(--muted,#5d6575)));font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+nav#site-navigation a{display:block;margin:2px 0;padding:8px 10px;border:0;border-radius:6px;background:transparent;color:var(--fg,var(--tx,var(--ink,#1f2430)));font:500 14px/1.4 system-ui,sans-serif;text-align:left;text-decoration:none;white-space:normal}
+nav#site-navigation a:hover,nav#site-navigation a:focus-visible{background:var(--bg,var(--cd,#f2f5f7));outline:none}
+nav#site-navigation>a:first-child{margin:0 0 10px;background:var(--ac,#0b6e8a);color:#fff;font-weight:700}
+nav#site-navigation>a:first-child:hover{opacity:.9}
+@media(max-width:480px){.nav-toggle{top:8px;left:8px}nav#site-navigation,nav#site-navigation[hidden]{top:58px!important;left:8px!important;width:calc(100vw - 16px)!important;max-height:calc(100dvh - 66px)!important}}</style></head><body>
+<button class="nav-toggle" type="button" aria-controls="site-navigation" aria-expanded="false"><span aria-hidden="true">&#9776;</span> Menu</button><nav id="site-navigation" hidden><a href="index.html">⌂ Beranda</a><b>Daftar isi</b><a href="#s0">0. Peta belajar</a><a href="#s1">1. Gambaran besar</a><a href="#s2">2. Threshold dasar</a><a href="#s3">3. Hypothesis testing & Bayes</a><a href="#s4">4. k-means</a><a href="#s5">5. Otsu</a><a href="#s6">6. Memperbaiki threshold</a><a href="#s7">7. Region-based</a><a href="#s8">8. Motion-based (ADI)</a><a href="#s9">9. Perbandingan</a><a href="#s10">10. Catatan kritis slide</a><a href="#s11">11. Latihan soal</a><a href="#s12">12. Contekan rumus</a></nav>
 <main>
 <h1>Segmentasi Citra (2): Threshold, Region, dan Motion</h1>
 <p>Panduan belajar dari slide 1–35 (adaptasi Yu Hen Hu). Setiap bagian berisi: <b>ide</b>, <b>penjelasan langkah</b>, <b>contoh/gambar</b>, dan <b>sudut pandang kritis</b> (kapan metodenya gagal). Gambar dibuat dengan Python (matplotlib) dari data sintetis, jadi ini ilustrasi mirip slide, bukan gambar asli slide.</p>
@@ -174,4 +199,27 @@ k-means: w(i) = (1/N_i) Σ anggota x_k ; berhenti jika 1−D(iter−1)/D(iter) &
 Otsu: P₁=Σ_{i≤k}p_i ; m_G=Σ i·p_i ; σ²_B=P₁(m₁−m_G)²+P₂(m₂−m_G)² → ambil MAKS<br>
 ADI: A_k=A_{k−1}+1 jika |R−f_k|&gt;T ; P: R−f_k&gt;T ; N: R−f_k&lt;−T</div>
 <p>Selamat belajar! Jika ada bagian yang masih membingungkan, tanyakan ke saya dengan menyebut nomor slide atau bagiannya.</p>
-</main></body></html>
+</main><script>
+(() => {
+  const button = document.querySelector('.nav-toggle');
+  const menu = document.getElementById('site-navigation');
+  if (!button || !menu) return;
+  const closeMenu = () => {
+    menu.hidden = true;
+    button.setAttribute('aria-expanded', 'false');
+  };
+  button.addEventListener('click', () => {
+    menu.hidden = !menu.hidden;
+    button.setAttribute('aria-expanded', String(!menu.hidden));
+  });
+  menu.addEventListener('click', event => {
+    if (event.target.closest('a')) closeMenu();
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') closeMenu();
+  });
+  document.addEventListener('click', event => {
+    if (!menu.hidden && !menu.contains(event.target) && !button.contains(event.target)) closeMenu();
+  });
+})();
+</script></body></html>
